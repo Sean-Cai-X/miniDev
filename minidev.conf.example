@@ -1,0 +1,9 @@
+# Copy to gpu-driver-cache/minidev.conf; do not commit local credentials.
+# MINIDEV_SOCKS_PROXY="socks5h://127.0.0.1:7897"
+# MINIDEV_APT_PROXY="http://127.0.0.1:7897"
+# MINIDEV_IMAGE_URL="https://your-storage.example/portable-gpu-runtime-12.1.ext4"
+# MINIDEV_IMAGE_SHA256="64-lowercase-hex-sha256"
+# MINIDEV_IMAGE_PATH="/path/to/portable-gpu-runtime-12.1.ext4"
+# MINIDEV_MOUNT="/mnt/codex-gpu-runtime"
+# MINIDEV_IMGIT_REPO="/path/to/ImGit-master"
+# MINIDEV_VISION_REPO="/path/to/codex-ai-vision-inspection"

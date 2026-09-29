@@ -1,0 +1,6 @@
+# Fail closed: only explicitly approved text files enter this repository.
+*
+!/.gitignore
+!/README.md
+!/minidev.sh
+!/minidev.conf.example
