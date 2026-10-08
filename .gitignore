@@ -4,3 +4,5 @@
 !/README.md
 !/minidev.sh
 !/minidev.conf.example
+!/GPU_RUNTIME.md
+!/gpu-runtime.sh

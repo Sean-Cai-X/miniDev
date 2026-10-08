@@ -32,4 +32,17 @@ Git/curl 可以用 MINIDEV_SOCKS_PROXY=socks5h://127.0.0.1:7897。APT 需要 HTT
 
 无镜像时的 APT 自动安装范围：GCC/GN/Ninja/CMake、Python/Jinja2、Git、OpenGL/GLFW/X11 与 libgit2/curl 开发头文件。OCCT、OpenCV、libtorch、CUDA、NVIDIA 专有驱动、应用程序及项目源码需要各项目独立的锁版本清单和合法下载源，不能由 miniDev 猜测版本。运行 GUI 还需要有效的图形会话、DISPLAY/XDG_RUNTIME_DIR 和驱动。
 
-不需要以 root 启动 ImGit 或业务程序；仅镜像挂载和 APT 安装会使用 sudo。不要通过此脚本热替换宿主 /usr。
+常规 ImGit 和业务程序不需要 root；candidate chroot 入口是例外，需 sudo 建立隔离挂载。镜像挂载和 APT 安装也可能使用 sudo。不要通过此脚本热替换宿主 /usr。
+
+## GPU 镜像构建与热加载
+
+同盘 ext4 镜像的锁版本、首次构建输入、重启后挂载、离线工具链验证、NVIDIA 模块构建/热加载及回退边界，见 [GPU_RUNTIME.md](GPU_RUNTIME.md)。执行入口：`bash miniDev/gpu-runtime.sh status`。驱动切换不是 `minidev.sh setup` 的一部分，需要单独审查和显式确认。
+
+最典型的 candidate X11 运行案例（初始图像会映射到 chroot 的 `/codex-data`）：
+
+```bash
+export CXVISION_INITIAL_IMAGE=/media/devuan/249C15F29C15BF6C/Codex-WorkDir/dev/codex-ai-vision/workspace/01.jpg
+bash miniDev/gpu-runtime.sh vision-candidate x11
+```
+
+直接运行 `sudo -E gpu-driver-cache/start_codex_ai_vision_candidate.sh run x11` 的完整命令及“宿主系统无污染”的准确边界见 [GPU_RUNTIME.md](GPU_RUNTIME.md)。
